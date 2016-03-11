@@ -1,0 +1,31 @@
+<h1>Welcome</h1>
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
+
+<div class="container">
+  <% @questions.each do |question|%>
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src= "<%= question.gravatar%>" alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading"><%= question.email%>: asked</h4>
+      <div>
+        <%= time_ago_in_words question.created_at%> ago
+      </div>
+      <%= question.body%>
+    </div>
+    <div>
+      <a href="<%= question_path(question) %>" class="btn btn-success btn-xs">View Answers</a>
+    </div>
+  </div>
+  <% end %>
+  <% if @questions.empty?%>
+  <div class="alert alert-info">There are no questions to display</div>
+  <% end %>
+</div>
