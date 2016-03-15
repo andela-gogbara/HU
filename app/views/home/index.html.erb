@@ -6,8 +6,9 @@
 </div>
 
 <div class="container">
+  <div class="boxes">
   <% @questions.each do |question|%>
-  <div class="media">
+  <div class="media" data-target="<%= question_path(question) %>">
     <div class="media-left">
       <a href="#">
         <img class="media-object" src= "<%= question.gravatar%>" alt="...">
@@ -15,16 +16,17 @@
     </div>
     <div class="media-body">
       <h4 class="media-heading"><%= question.email%>: asked</h4>
-      <div>
+      <div class="time">
         <%= time_ago_in_words question.created_at%> ago
       </div>
       <%= question.body%>
     </div>
-    <div>
+    <div class="view-answer">
       <a href="<%= question_path(question) %>" class="btn btn-success btn-xs">View Answers</a>
     </div>
   </div>
   <% end %>
+</div>
   <% if @questions.empty?%>
   <div class="alert alert-info">There are no questions to display</div>
   <% end %>
